@@ -1,0 +1,2 @@
+"0","ncbirths_notwhite <- ncbirths %>%"
+"0","  filter(whitemom == ""not white"") "

@@ -1,0 +1,8 @@
+"0",""
+"0","Q1 <- quantile(ncbirths$weight, 0.25)"
+"0","Q3 <- quantile(ncbirths$weight, 0.75)"
+"0","IQR <- Q3 - Q1"
+"0",""
+"0","ncbirths_outliers <- ncbirths %>%"
+"0","  filter(weight < (Q1 - 1.5 * IQR) | weight > (Q3 + 1.5 * IQR))"
+"0",""
