@@ -75,10 +75,44 @@ mean(ncbirths_notwhite$weight)
 ### Exercise 4
 > Run the appropriate hypothesis test, visualize the null distribution, calculate the p-value, and interpret the results in the context of the data and the hypothesis test.
 
+Null - baby weight = 7.43
+Alternative - weight does not = 7.43
+
+```{r}
+boot_dist <- ncbirths_white %>%
+  specify(response = weight) %>%
+  generate(reps = 1000, type = "bootstrap") %>%
+  calculate(stat = "mean")
+```
+
+```{r}
+ggplot(boot_dist, aes(x = stat)) +
+  geom_histogram(binwidth = 0.01) +
+  labs(title = "Null distribution")
+```
+```{r}
+get_p_value(boot_dist, obs_stat = 7.43, direction = "two-sided")
+```
+
+
+```{r}
+t.test(ncbirths_white$weight, mu = 7.43)
+```
+
+The mean of the current sample is 7.25 as compared to the 7.43 reported in 1995 -- the t-test is significant (p = 0.0009) suggesting there is a sig difference between the means. We can infer that the average weight of babies has changed since 1995.
+
 ## Part 2: Baby weight vs smoking 
 
 ### Exercise 5
 > Make side-by-side box plots displaying the relationship between habit and weight. What does the plot highlight about the relationship between these two variables?
+
+```{r}
+ggplot(ncbirths_white, aes(x = weight, y = habit)) +
+  geom_boxplot(outlier.shape = NA, fill = "lightgray") +
+  geom_jitter(width = 0.2, size = 2, alpha = 0.6, color = "black") +
+  labs(x = "Weight", y = "Habit") 
+```
+From these box plots - non smokers' babies tend to have higher birth weights on average than smokers' babies suggesting there is a potential neg effect of smoking on birth weight 
 
 ### Exercise 6
 > Before continuing, create a cleaned version of the dataset by removing any rows with missing values for habit or weight. Name this version ncbirths_clean.

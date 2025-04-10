@@ -1,0 +1,3 @@
+"0","get_p_value(boot_dist, obs_stat = 7.43, direction = ""two-sided"")"
+"2","Warning: [38;5;232mPlease be cautious in reporting a p-value of 0. This result is an approximation based on the number of `reps` chosen in the `generate()` step.
+[36mℹ[38;5;232m See ]8;;ide:help:infer::get_p_value`get_p_value()`]8;; for more information.[39m"

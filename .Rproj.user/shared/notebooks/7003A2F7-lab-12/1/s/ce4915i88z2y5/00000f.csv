@@ -1,0 +1,4 @@
+"0","boot_dist <- ncbirths_white %>%"
+"0","  specify(response = weight) %>%"
+"0","  generate(reps = 1000, type = ""bootstrap"") %>%"
+"0","  calculate(stat = ""mean"")"

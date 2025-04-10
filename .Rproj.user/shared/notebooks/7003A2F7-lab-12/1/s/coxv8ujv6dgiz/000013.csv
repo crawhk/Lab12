@@ -1,0 +1,4 @@
+"0","ggplot(ncbirths_white, aes(x = weight, y = habit)) +"
+"0","  geom_boxplot(outlier.shape = NA, fill = ""lightgray"") +"
+"0","  geom_jitter(width = 0.2, size = 2, alpha = 0.6, color = ""black"") +"
+"0","  labs(x = ""Weight"", y = ""Habit"") "

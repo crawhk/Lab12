@@ -1,0 +1,3 @@
+"0","ggplot(boot_dist, aes(x = stat)) +"
+"0","  geom_histogram(binwidth = 0.01) +"
+"0","  labs(title = ""Null distribution"")"
