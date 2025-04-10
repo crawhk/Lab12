@@ -1,0 +1,2 @@
+"0","ncbirths_clean <- ncbirths %>%"
+"0","  filter(!is.na (weight) & !is.na(habit)) "

@@ -71,6 +71,7 @@ mean(ncbirths_notwhite$weight)
 ### Exercise 3
 > Are the criteria necessary for conducting simulation-based inference satisfied? Explain your reasoning.
 
+Independent obsevations - each observation reflects one mother 
 
 ### Exercise 4
 > Run the appropriate hypothesis test, visualize the null distribution, calculate the p-value, and interpret the results in the context of the data and the hypothesis test.
@@ -112,26 +113,48 @@ ggplot(ncbirths_white, aes(x = weight, y = habit)) +
   geom_jitter(width = 0.2, size = 2, alpha = 0.6, color = "black") +
   labs(x = "Weight", y = "Habit") 
 ```
-From these box plots - non smokers' babies tend to have higher birth weights on average than smokers' babies suggesting there is a potential neg effect of smoking on birth weight 
+From these box plots - non smokers' babies tend to have higher birth weights on average than smokers' babies suggesting there is a potential neg effect of smoking on birth weight (for white mothers)
 
 ### Exercise 6
 > Before continuing, create a cleaned version of the dataset by removing any rows with missing values for habit or weight. Name this version ncbirths_clean.
 
+
+```{r}
+ncbirths_clean <- ncbirths %>%
+  filter(!is.na (weight) & !is.na(habit)) 
+```
+
+
 ### Exercise 7
 > Calculate the observed difference in means between the baby weights of smoking and non-smoking mothers.
+
+```{r}
+ncbirths_clean %>%
+  group_by(habit) %>%
+  summarize(mean_weight = mean(weight))
+```
+
+Smokers' babies appear to have lower birth weights on average
 
 ### Exercise 8
 > Write the hypotheses for testing if the average weights of babies born to smoking and non-smoking mothers are different.
 
-H0: _________ (μ1 = μ2)
+H0: mean birth weight of the babies born to non-smoking and smoking mothers do not significantly differ (μ1 = μ2)
 
-HA: _________ (μ1 ≠ μ2)
+HA: mean birth weight of babies born to non-smoking and smoking mothers do sig differ  (μ1 ≠ μ2)
 
 ### Exercise 9
 > Run the appropriate hypothesis test, calculate the p-value, and interpret the results in context of the data and the hypothesis test.
 
+```{r}
+t.test(weight ~ habit, data = ncbirths_clean)
+```
+There is a significant difference (p = 0.019) between the two groups suggesting that on average babies born to smokers have significantly lower birth weight 
+
 ### Exercise 10
 > Construct a 95% confidence interval for the difference between the average weights of babies born to smoking and non-smoking mothers.
+
+95% confidence interval is roughly 0.052 to 0.580 - meaning that we are 95% sure that the difference between the mean birth weights ranges from .052 and .580 lbs 
 
 ## Part 3: Mother's age vs baby weight 
 
